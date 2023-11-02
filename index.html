@@ -25,40 +25,53 @@
 					<span class="bot-score">0</span>
 				</div>
 			</div>
-			<div class="dahsboard">
+      <div class="note">
+        <p>note</p>
+      </div>
+			<div class="dashboard">
 				<div class="palyer">
 					<h2>player</h2>
-					<div>
-						<div class="choice-container player">
-							<div class="op1 p-option"></div>
-							<div class="op2 p-option"></div>
-							<div class="op3 p-option"></div>
-						</div>
+					<div class="choice-container player-opt">
+						<button class="opt fire p-option">
+							<i class="fa-solid fa-fire"></i>
+						</button>
+						<button class="opt water p-option">
+							<i class="fa-solid fa-droplet"></i>
+						</button>
+						<button class="opt earth p-option">
+							<i class="fa-solid fa-mountain"></i>
+						</button>
 					</div>
 				</div>
 				<div class="g-score">
-					<span class="points p-points">0</span>
-					<span>-</span>
-					<span class="points r-poinst">0</span>
+					<div class="score">
+						<span class="points p-points">0</span>
+						<span>-</span>
+						<span class="points r-poinst">0</span>
+					</div>
 					<div class="restart">
 						<button class="play-again">Play Again</button>
 					</div>
 				</div>
-				<div class="bot">
+				<div class="robot">
 					<h2>Robot</h2>
-					<div>
-						<div class="choice-container bot">
-							<div class="op1 r-option"></div>
-							<div class="op2 r-option"></div>
-							<div class="op3 r-option"></div>
-						</div>
+					<div class="choice-container robot-opt">
+						<button class="opt fire r-option">
+							<i class="fa-solid fa-fire"></i>
+						</button>
+						<button class="opt water r-option">
+							<i class="fa-solid fa-droplet"></i>
+						</button>
+						<button class="opt earth r-option">
+							<i class="fa-solid fa-mountain"></i>
+						</button>
 					</div>
 				</div>
-				<div class="played">
-					<span>earth</span>
-					<span>></span>
-					<span>water</span>
-				</div>
+			</div>
+			<div class="played">
+				<span>earth</span>
+				<span>></span>
+				<span>water</span>
 			</div>
 		</div>
 		<script src="main.js"></script>
