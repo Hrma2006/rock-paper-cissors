@@ -1,9 +1,14 @@
 //Some variables to change the text on the screen
 const pRounds = document.querySelector(".player-score").innerHTML;
 const rRounds = document.querySelector(".robot-score").innerHTML;
+//robot buttons
 const computerFire = document.querySelector(".r-fire").style;
 const computerWater = document.querySelector(".r-water").style;
 const computerGrass = document.querySelector(".r-grass").style;
+//player buttons
+const playerFire = document.querySelector("#p-fire").style;
+const playerWater = document.querySelector("#p-water").style;
+const playerGrass = document.querySelector("#p-grass").style;
 
 function getComputerChoice() {
 	let options = ["Fire", "Water", "Grass"];
@@ -28,6 +33,7 @@ function getPlayerChoice() {
 			} else if (button.id === "p-grass") {
 				selectedButton = "Grass";
 			}
+      showPlayer(selectedButton)
 			playGame(selectedButton);
 		});
 	});
@@ -37,9 +43,8 @@ function playGame(selected) {
 	let computer = getComputerChoice();
 	console.log(`You selected ${selected}`);
 	console.log(`Computer selected ${computer}`);
-  if (/fire/i.test(selected) && /Grass/i.test(computer)) {
-    console.log("Fire Burns")
-  }}
+  
+}
 // change the color of the computer selected button
 function showComputer(option) {
 	if (/fire/i.test(option)) {
@@ -65,5 +70,27 @@ function showComputer(option) {
     computerWater.boxShadow="0 0 10px 5px var(--water)";
 	}
 }
-function showPlayer() {}
+function showPlayer(option){
+  if (/fire/i.test(option)) {
+		playerFire.color = "var(--fire)";
+		playerFire.boxShadow = "0 0 10px 5px var(--fire)";
+		playerGrass.color = "";
+		playerGrass.boxShadow = "";
+		playerWater.color = "";
+		playerWater.boxShadow = "";
+	} else if (/Grass/i.test(option)) {
+		playerGrass.color = "var(--grass)";
+		playerGrass.boxShadow = "0 0 10px 5px var(--grass)";
+    playerFire.color = "";
+		playerFire.boxShadow = "";
+    playerWater.color="";
+    computerWater.boxShadow="";
+	} else {
+    playerFire.color = "";
+		playerFire.boxShadow = "";
+		playerGrass.color = "";
+		playerGrass.boxShadow = "";
+    playerWater.color="var(--water)";
+    playerWater.boxShadow="0 0 10px 5px var(--water)";}
+}
 getPlayerChoice();
