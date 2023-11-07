@@ -1,9 +1,13 @@
+//Some variables to change the text on the screen
+const pRounds=document.querySelector(".player-score").innerHTML
+const rRounds=document.querySelector(".robot-score").innerHTML
 
 function getComputerChoice() {
 	let options=["Fire","Water","Earth"]
 	let random = Math.floor(Math.random() * options.length);
 	return (options[random])
 }
+// A function to get the player choice
 function getPlayerChoice(){
 	let selectedButton;
 // Get all buttons with the ".p-option" class.
@@ -19,14 +23,16 @@ buttons.forEach(button => {
     } else if (button.id === 'p-earth') {
       selectedButton = 'Earth';
     }
-		game(selectedButton)
+		playGame(selectedButton)
   });
 });
 }
-function game(selected){
+
+function playGame(selected){
   let computer=getComputerChoice();
 	console.log(`You selected ${selected}`)
 	console.log(`The computer selected ${computer}`)
+  
 }
 getPlayerChoice()
 
