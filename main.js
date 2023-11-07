@@ -3,10 +3,10 @@ const pRounds = document.querySelector(".player-score").innerHTML;
 const rRounds = document.querySelector(".robot-score").innerHTML;
 const computerFire = document.querySelector(".r-fire").style;
 const computerWater = document.querySelector(".r-water").style;
-const computerEarth = document.querySelector(".r-earth").style;
+const computerGrass = document.querySelector(".r-grass").style;
 
 function getComputerChoice() {
-	let options = ["Fire", "Water", "Earth"];
+	let options = ["Fire", "Water", "Grass"];
 	let random = Math.floor(Math.random() * options.length);
 	let chosen = options[random];
 	showComputer(chosen);
@@ -25,8 +25,8 @@ function getPlayerChoice() {
 				selectedButton = "Fire";
 			} else if (button.id === "p-water") {
 				selectedButton = "Water";
-			} else if (button.id === "p-earth") {
-				selectedButton = "Earth";
+			} else if (button.id === "p-grass") {
+				selectedButton = "Grass";
 			}
 			playGame(selectedButton);
 		});
@@ -36,29 +36,31 @@ function getPlayerChoice() {
 function playGame(selected) {
 	let computer = getComputerChoice();
 	console.log(`You selected ${selected}`);
-	console.log(`The computer selected ${computer}`);
-}
+	console.log(`Computer selected ${computer}`);
+  if (/fire/i.test(selected) && /Grass/i.test(computer)) {
+    console.log("Fire Burns")
+  }}
 // change the color of the computer selected button
 function showComputer(option) {
 	if (/fire/i.test(option)) {
 		computerFire.color = "var(--fire)";
 		computerFire.boxShadow = "0 0 10px 5px var(--fire)";
-		computerEarth.color = "";
-		computerEarth.boxShadow = "";
+		computerGrass.color = "";
+		computerGrass.boxShadow = "";
 		computerWater.color = "";
 		computerWater.boxShadow = "";
-	} else if (/earth/i.test(option)) {
+	} else if (/Grass/i.test(option)) {
     computerFire.color = "";
 		computerFire.boxShadow = "";
-		computerEarth.color = "var(--earth)";
-		computerEarth.boxShadow = "0 0 10px 5px var(--earth)";
+		computerGrass.color = "var(--grass)";
+		computerGrass.boxShadow = "0 0 10px 5px var(--grass)";
     computerWater.color="";
     computerWater.boxShadow="";
 	} else {
     computerFire.color = "";
 		computerFire.boxShadow = "";
-		computerEarth.color = "";
-		computerEarth.boxShadow = "";
+		computerGrass.color = "";
+		computerGrass.boxShadow = "";
     computerWater.color="var(--water)";
     computerWater.boxShadow="0 0 10px 5px var(--water)";
 	}

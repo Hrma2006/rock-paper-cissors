@@ -8,7 +8,7 @@
   --accent:#FFD700;
   --fire:rgb(255, 51, 0);
   --water:rgb(0, 128, 255);
-  --earth:rgb(57, 190, 8);
+  --grass:rgb(57, 190, 8);
 }
 *{
   margin: 0;
@@ -89,7 +89,7 @@ i{
   display: flex;
   align-items: center;
   justify-content: center;
-  transition-duration: .5s;
+  transition-duration: .4s;
 }
 .opt:hover{
   cursor: pointer;
@@ -103,9 +103,9 @@ box-shadow: 0 0 10px 5px var(--fire);
   color: var(--water);
   box-shadow: 0 0 10px 5px var(--water);
 }
-.earth:hover{
-  color: var(--earth);
-  box-shadow: 0 0 10px 5px var(--earth);
+.grass:hover{
+  color: var(--grass);
+  box-shadow: 0 0 10px 5px var(--grass);
 }
 .g-score{
   display: flex;
