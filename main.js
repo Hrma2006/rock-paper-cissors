@@ -79,12 +79,12 @@ function showPlayer(option){
 		playerWater.color = "";
 		playerWater.boxShadow = "";
 	} else if (/Grass/i.test(option)) {
-		playerGrass.color = "var(--grass)";
-		playerGrass.boxShadow = "0 0 10px 5px var(--grass)";
     playerFire.color = "";
 		playerFire.boxShadow = "";
+		playerGrass.color = "var(--grass)";
+		playerGrass.boxShadow = "0 0 10px 5px var(--grass)";
     playerWater.color="";
-    computerWater.boxShadow="";
+    playerWater.boxShadow="";
 	} else {
     playerFire.color = "";
 		playerFire.boxShadow = "";
@@ -94,3 +94,4 @@ function showPlayer(option){
     playerWater.boxShadow="0 0 10px 5px var(--water)";}
 }
 getPlayerChoice();
+f
