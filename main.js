@@ -138,6 +138,12 @@ function playerPintsPlus(){
   pPointsNum+=1;
   pPoints.innerHTML=pPointsNum;
 }
+// a function to increase the games won by robot
+function playerPintsPlus(){
+  rPointsNum+=1;
+  rPoints.innerHTML=rPointsNum;
+}
+
 // a function to compare choices
 function compareChoices(player,robot){
   //draw
