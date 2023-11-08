@@ -202,6 +202,7 @@ function createHistory(player, robot) {
 	// Append the .played element to the .played-container
 	playedContainer.appendChild(playedElement);
 }
+// a function to show played choices
 function makeCompare(player, robot) {
 	let operator;
 	if (player === robot) {
