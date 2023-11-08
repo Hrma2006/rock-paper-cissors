@@ -162,10 +162,13 @@ function compareChoices(player, robot) {
 	}
 	//loses
 	else if (/grass/i.test(player) && /fire/i.test(robot)) {
+    robotPointsPlus()
 		return `*${robot} burns ${player} you Lost*`;
 	} else if (/fire/i.test(player) && /water/i.test(robot)) {
+    robotPointsPlus()
 		return `*${robot} puts down ${player} you Lost*`;
 	} else if (/water/i.test(player) && /grass/i.test(robot)) {
+    robotPointsPlus()
 		return `*${robot} absorbs ${player} you Lost*`;
 	}
 }
