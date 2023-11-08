@@ -122,14 +122,12 @@ getPlayerChoice();
 function playerWon() {
 	pRoundNum += 1;
 	pRounds.innerHTML = pRoundNum;
-	console.log(pRoundNum, pRounds);
 }
 
 // a function to change the onscreen rounds won by robot
 function robotWon() {
 	rRoundNum += 1;
 	rRounds.innerHTML = rRoundNum;
-	console.log(pRoundNum, pRounds);
 }
 
 // a function to increase the games won by player
