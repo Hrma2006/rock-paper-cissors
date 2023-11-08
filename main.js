@@ -5,7 +5,7 @@ let pRoundNum = 0;
 //variables to each round won by the robot
 let rRounds = document.querySelector(".robot-score");
 let rRoundNum = 0;
-let note = document.querySelector(".note").textContent;
+let note = document.querySelector(".note");
 
 //variables to each game won by player
 let pPoints=document.querySelector(".p-points")
@@ -24,19 +24,19 @@ let playerPlayed=document.querySelector(".p-played")
 let rPlayed=document.querySelector(".r-played")
 
 //robot buttons
-const computerFire = document.querySelector(".r-fire").style;
-const computerWater = document.querySelector(".r-water").style;
-const computerGrass = document.querySelector(".r-grass").style;
+const robotFire = document.querySelector(".r-fire").style;
+const robotWater = document.querySelector(".r-water").style;
+const robotGrass = document.querySelector(".r-grass").style;
 //player buttons
 const playerFire = document.querySelector("#p-fire").style;
 const playerWater = document.querySelector("#p-water").style;
 const playerGrass = document.querySelector("#p-grass").style;
 
-function getComputerChoice() {
+function getrobotChoice() {
 	let options = ["Fire", "Water", "Grass"];
 	let random = Math.floor(Math.random() * options.length);
 	let chosen = options[random];
-	showComputer(chosen);
+	showrobot(chosen);
 	return chosen;
 }
 // A function to get the player choice
@@ -62,34 +62,35 @@ function getPlayerChoice() {
 }
 
 function playGame(selected) {
-	let computer = getComputerChoice();
+	let robot = getrobotChoice();
 	console.log(`You selected ${selected}`);
-	console.log(`Computer selected ${computer}`);
-  playerWon();
+	console.log(`robot selected ${robot}`);
+  note.innerHTML=compareChoices(selected,robot);
+  
 }
-// change the color of the computer selected button
-function showComputer(option) {
+// change the color of the robot selected button
+function showrobot(option) {
 	if (/fire/i.test(option)) {
-		computerFire.color = "var(--fire)";
-		computerFire.boxShadow = "0 0 10px 5px var(--fire)";
-		computerGrass.color = "";
-		computerGrass.boxShadow = "";
-		computerWater.color = "";
-		computerWater.boxShadow = "";
+		robotFire.color = "var(--fire)";
+		robotFire.boxShadow = "0 0 10px 5px var(--fire)";
+		robotGrass.color = "";
+		robotGrass.boxShadow = "";
+		robotWater.color = "";
+		robotWater.boxShadow = "";
 	} else if (/Grass/i.test(option)) {
-		computerFire.color = "";
-		computerFire.boxShadow = "";
-		computerGrass.color = "var(--grass)";
-		computerGrass.boxShadow = "0 0 10px 5px var(--grass)";
-		computerWater.color = "";
-		computerWater.boxShadow = "";
+		robotFire.color = "";
+		robotFire.boxShadow = "";
+		robotGrass.color = "var(--grass)";
+		robotGrass.boxShadow = "0 0 10px 5px var(--grass)";
+		robotWater.color = "";
+		robotWater.boxShadow = "";
 	} else {
-		computerFire.color = "";
-		computerFire.boxShadow = "";
-		computerGrass.color = "";
-		computerGrass.boxShadow = "";
-		computerWater.color = "var(--water)";
-		computerWater.boxShadow = "0 0 10px 5px var(--water)";
+		robotFire.color = "";
+		robotFire.boxShadow = "";
+		robotGrass.color = "";
+		robotGrass.boxShadow = "";
+		robotWater.color = "var(--water)";
+		robotWater.boxShadow = "0 0 10px 5px var(--water)";
 	}
 }
 function showPlayer(option) {
@@ -117,10 +118,45 @@ function showPlayer(option) {
 	}
 }
 getPlayerChoice();
+
+// a function to change the onscreen rounds won by player
 function playerWon() {
 	pRoundNum += 1;
 	pRounds.innerHTML = pRoundNum;
 	console.log(pRoundNum, pRounds);
 }
 
+// a function to change the onscreen rounds won by player
+function robotWon() {
+	rRoundNum += 1;
+	rRounds.innerHTML = rRoundNum;
+	console.log(pRoundNum, pRounds);
+}
+// a function to compare choices
+function compareChoices(player,robot){
+  //draw
+  if (player===robot){
+    return (`*you both chose ${player} it is a Draw*`)
+  }
+  //wins
+  else if(/fire/i.test(player)&&/grass/i.test(robot)){
+    return (`*${player} burns ${robot} you Won*`)
+  }
+  else if(/water/i.test(player)&&/fire/i.test(robot)){
+    return (`*${player} puts down ${robot} you Won*`)
+  }
+  else if(/grass/i.test(player)&&/water/i.test(robot)){
+    return (`*${player} absorbs ${robot} you won*`)
+  }
+  //loses
+  else if(/grass/i.test(player)&&/fire/i.test(robot)){
+    return (`*${robot} burns ${player} you Lost*`)
+  }
+  else if(/fire/i.test(player)&&/water/i.test(robot)){
+    return (`*${robot} puts down ${player} you Lost*`)
+  }
+  else if(/water/i.test(player)&&/grass/i.test(robot)){
+    return (`*${robot} absorbs ${player} you Lost*`)
+  }
 
+}
