@@ -1,6 +1,28 @@
 //Some variables to change the text on the screen
-const pRounds = document.querySelector(".player-score").innerHTML;
-const rRounds = document.querySelector(".robot-score").innerHTML;
+//variables to each round won by the player
+let pRounds = document.querySelector(".player-score");
+let pRoundNum = 0;
+//variables to each round won by the robot
+let rRounds = document.querySelector(".robot-score");
+let rRoundNum = 0;
+let note = document.querySelector(".note").textContent;
+
+//variables to each game won by player
+let pPoints=document.querySelector(".p-points")
+let pPointsNum=0;
+
+//variables to each game won by robot
+let rPoints=document.querySelector(".r-points")
+let rPointsNum=0;
+
+//variables to show the chosen options on the screen
+
+//player
+let playerPlayed=document.querySelector(".p-played")
+
+//robot 
+let rPlayed=document.querySelector(".r-played")
+
 //robot buttons
 const computerFire = document.querySelector(".r-fire").style;
 const computerWater = document.querySelector(".r-water").style;
@@ -33,7 +55,7 @@ function getPlayerChoice() {
 			} else if (button.id === "p-grass") {
 				selectedButton = "Grass";
 			}
-      showPlayer(selectedButton)
+			showPlayer(selectedButton);
 			playGame(selectedButton);
 		});
 	});
@@ -43,7 +65,7 @@ function playGame(selected) {
 	let computer = getComputerChoice();
 	console.log(`You selected ${selected}`);
 	console.log(`Computer selected ${computer}`);
-  
+  playerWon();
 }
 // change the color of the computer selected button
 function showComputer(option) {
@@ -55,23 +77,23 @@ function showComputer(option) {
 		computerWater.color = "";
 		computerWater.boxShadow = "";
 	} else if (/Grass/i.test(option)) {
-    computerFire.color = "";
+		computerFire.color = "";
 		computerFire.boxShadow = "";
 		computerGrass.color = "var(--grass)";
 		computerGrass.boxShadow = "0 0 10px 5px var(--grass)";
-    computerWater.color="";
-    computerWater.boxShadow="";
+		computerWater.color = "";
+		computerWater.boxShadow = "";
 	} else {
-    computerFire.color = "";
+		computerFire.color = "";
 		computerFire.boxShadow = "";
 		computerGrass.color = "";
 		computerGrass.boxShadow = "";
-    computerWater.color="var(--water)";
-    computerWater.boxShadow="0 0 10px 5px var(--water)";
+		computerWater.color = "var(--water)";
+		computerWater.boxShadow = "0 0 10px 5px var(--water)";
 	}
 }
-function showPlayer(option){
-  if (/fire/i.test(option)) {
+function showPlayer(option) {
+	if (/fire/i.test(option)) {
 		playerFire.color = "var(--fire)";
 		playerFire.boxShadow = "0 0 10px 5px var(--fire)";
 		playerGrass.color = "";
@@ -79,19 +101,26 @@ function showPlayer(option){
 		playerWater.color = "";
 		playerWater.boxShadow = "";
 	} else if (/Grass/i.test(option)) {
-    playerFire.color = "";
+		playerFire.color = "";
 		playerFire.boxShadow = "";
 		playerGrass.color = "var(--grass)";
 		playerGrass.boxShadow = "0 0 10px 5px var(--grass)";
-    playerWater.color="";
-    playerWater.boxShadow="";
+		playerWater.color = "";
+		playerWater.boxShadow = "";
 	} else {
-    playerFire.color = "";
+		playerFire.color = "";
 		playerFire.boxShadow = "";
 		playerGrass.color = "";
 		playerGrass.boxShadow = "";
-    playerWater.color="var(--water)";
-    playerWater.boxShadow="0 0 10px 5px var(--water)";}
+		playerWater.color = "var(--water)";
+		playerWater.boxShadow = "0 0 10px 5px var(--water)";
+	}
 }
 getPlayerChoice();
-f
+function playerWon() {
+	pRoundNum += 1;
+	pRounds.innerHTML = pRoundNum;
+	console.log(pRoundNum, pRounds);
+}
+
+
