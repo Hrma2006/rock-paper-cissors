@@ -127,5 +127,7 @@ button:hover{
 cursor: pointer;
 }
 .played{
+  display: flex;
   font-size: var(--small);
+  gap: var(--meduim);
 }
