@@ -126,11 +126,17 @@ function playerWon() {
 	console.log(pRoundNum, pRounds);
 }
 
-// a function to change the onscreen rounds won by player
+// a function to change the onscreen rounds won by robot
 function robotWon() {
 	rRoundNum += 1;
 	rRounds.innerHTML = rRoundNum;
 	console.log(pRoundNum, pRounds);
+}
+
+// a function to increase the games won by player
+function playerPintsPlus(){
+  pPointsNum+=1;
+  pPoints.innerHTML=pPointsNum;
 }
 // a function to compare choices
 function compareChoices(player,robot){
