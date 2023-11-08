@@ -32,7 +32,9 @@ const playerFire = document.querySelector("#p-fire").style;
 const playerWater = document.querySelector("#p-water").style;
 const playerGrass = document.querySelector("#p-grass").style;
 
-function getrobotChoice() {
+const playedContainer = document.querySelector(".played-container");
+
+function getRobotChoice() {
 	let options = ["Fire", "Water", "Grass"];
 	let random = Math.floor(Math.random() * options.length);
 	let chosen = options[random];
@@ -62,10 +64,12 @@ function getPlayerChoice() {
 }
 
 function playGame(selected) {
-	let robot = getrobotChoice();
+	let robot = getRobotChoice();
 	console.log(`You selected ${selected}`);
-	console.log(`robot selected ${robot}`);
+	console.log(`Robot selected ${robot}`);
 	note.innerHTML = compareChoices(selected, robot);
+	createHistory(selected,robot);
+	console.log(note.innerHTML);
 }
 // change the color of the robot selected button
 function showRobot(option) {
@@ -122,12 +126,14 @@ getPlayerChoice();
 function playerWon() {
 	pRoundNum += 1;
 	pRounds.innerHTML = pRoundNum;
+	return rRoundNum;
 }
 
 // a function to change the onscreen rounds won by robot
 function robotWon() {
 	rRoundNum += 1;
 	rRounds.innerHTML = rRoundNum;
+	return rRoundNum;
 }
 
 // a function to increase the games won by player
@@ -160,13 +166,60 @@ function compareChoices(player, robot) {
 	}
 	//loses
 	else if (/grass/i.test(player) && /fire/i.test(robot)) {
-    robotPointsPlus()
+		robotPointsPlus();
 		return `*${robot} burns ${player} you Lost*`;
 	} else if (/fire/i.test(player) && /water/i.test(robot)) {
-    robotPointsPlus()
+		robotPointsPlus();
 		return `*${robot} puts down ${player} you Lost*`;
 	} else if (/water/i.test(player) && /grass/i.test(robot)) {
-    robotPointsPlus()
+		robotPointsPlus();
 		return `*${robot} absorbs ${player} you Lost*`;
 	}
+}
+function createHistory(player, robot) {
+	const playedElement = document.createElement("div");
+	playedElement.classList.add("played");
+
+	// Create the child elements
+	const pPlayedElement = document.createElement("span");
+	pPlayedElement.classList.add("p-played");
+	pPlayedElement.textContent = player;
+
+	const compareElement = document.createElement("span");
+	compareElement.classList.add("compare");
+  let operator=makeCompare(player,robot)
+	compareElement.textContent = operator;
+
+	const rPlayedElement = document.createElement("span");
+	rPlayedElement.classList.add("r-played");
+	rPlayedElement.textContent = robot;
+
+	// Append the child elements to the .played element
+	playedElement.appendChild(pPlayedElement);
+	playedElement.appendChild(compareElement);
+	playedElement.appendChild(rPlayedElement);
+
+	// Append the .played element to the .played-container
+	playedContainer.appendChild(playedElement);
+}
+function makeCompare(player, robot) {
+	let operator;
+	if (player === robot) {
+		operator = "=";
+	} else if (/fire/i.test(player) && /grass/i.test(robot)) {
+		operator = ">";
+	} else if (/water/i.test(player) && /fire/i.test(robot)) {
+		operator = ">";
+	} else if (/grass/i.test(player) && /water/i.test(robot)) {
+		operator = ">";
+	}
+	//loses
+	else if (/grass/i.test(player) && /fire/i.test(robot)) {
+		operator = "<";
+	} else if (/fire/i.test(player) && /water/i.test(robot)) {
+		operator = "<";
+	} else if (/water/i.test(player) && /grass/i.test(robot)) {
+		operator = "<";
+	}
+	return operator;
 }
