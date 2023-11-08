@@ -139,7 +139,7 @@ function playerPintsPlus(){
   pPoints.innerHTML=pPointsNum;
 }
 // a function to increase the games won by robot
-function playerPintsPlus(){
+function robotPointsPlus(){
   rPointsNum+=1;
   rPoints.innerHTML=rPointsNum;
 }
@@ -148,14 +148,17 @@ function playerPintsPlus(){
 function compareChoices(player,robot){
   //draw
   if (player===robot){
-    return (`*you both chose ${player} it is a Draw*`)
+    return (`*you both chose ${player} it is a Draw*`);
+    
   }
   //wins
   else if(/fire/i.test(player)&&/grass/i.test(robot)){
-    return (`*${player} burns ${robot} you Won*`)
+    return (`*${player} burns ${robot} you Won*`);
+
   }
   else if(/water/i.test(player)&&/fire/i.test(robot)){
     return (`*${player} puts down ${robot} you Won*`)
+
   }
   else if(/grass/i.test(player)&&/water/i.test(robot)){
     return (`*${player} absorbs ${robot} you won*`)
