@@ -5,6 +5,7 @@ let pRoundNum = 0;
 //variables to each round won by the robot
 let rRounds = document.querySelector(".robot-score");
 let rRoundNum = 0;
+
 let note = document.querySelector(".note");
 
 //variables to each game won by player
@@ -15,6 +16,7 @@ let pPointsNum = 0;
 let rPoints = document.querySelector(".r-points");
 let rPointsNum = 0;
 
+let playAgain = document.querySelector(".play-again");
 //variables to show the chosen options on the screen
 
 //player
@@ -32,7 +34,8 @@ const playerFire = document.querySelector("#p-fire").style;
 const playerWater = document.querySelector("#p-water").style;
 const playerGrass = document.querySelector("#p-grass").style;
 
-const playedContainer = document.querySelector(".played-container");
+let playedContainer = document.querySelector(".played-container");
+let playedElements = document.querySelectorAll(".played");
 
 function getRobotChoice() {
 	let options = ["Fire", "Water", "Grass"];
@@ -68,7 +71,7 @@ function playGame(selected) {
 	console.log(`You selected ${selected}`);
 	console.log(`Robot selected ${robot}`);
 	note.innerHTML = compareChoices(selected, robot);
-	createHistory(selected,robot);
+	createHistory(selected, robot);
 	console.log(note.innerHTML);
 }
 // change the color of the robot selected button
@@ -120,7 +123,6 @@ function showPlayer(option) {
 		playerWater.boxShadow = "0 0 10px 5px var(--water)";
 	}
 }
-getPlayerChoice();
 
 // a function to change the onscreen rounds won by player
 function playerWon() {
@@ -187,7 +189,7 @@ function createHistory(player, robot) {
 
 	const compareElement = document.createElement("span");
 	compareElement.classList.add("compare");
-  let operator=makeCompare(player,robot)
+	let operator = makeCompare(player, robot);
 	compareElement.textContent = operator;
 
 	const rPlayedElement = document.createElement("span");
@@ -224,3 +226,23 @@ function makeCompare(player, robot) {
 	}
 	return operator;
 }
+//reset the games won
+playAgain.addEventListener("click", () => {
+	pPointsNum = 0;
+	pPoints.innerHTML = pPointsNum;
+
+	rPointsNum = 0;
+	rPoints.innerHTML = rRoundNum;
+	removePlayed();
+	playAgain.style.scale = "0";
+});
+function removePlayed() {
+	let playedContainer = document.querySelector(".played-container");
+	let playedElements = document.querySelectorAll(".played");
+
+	playedElements.forEach((playedElement) => {
+		playedContainer.removeChild(playedElement);
+	});
+}
+
+getPlayerChoice();
