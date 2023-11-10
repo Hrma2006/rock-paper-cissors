@@ -119,6 +119,9 @@ i {
 .score {
   font-size: var(--meduim);
 }
+.play-again{
+	scale: 0;
+}
 button {
   background-color: var(--accent);
 	font-size: var(--small);
