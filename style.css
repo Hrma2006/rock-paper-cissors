@@ -132,6 +132,7 @@ button:hover {
   cursor: pointer;
 }
 .played-container{
+	padding-bottom: 50px;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
@@ -150,4 +151,17 @@ button:hover {
   display: flex;
   justify-content: center;
   width: var(--small);
+}
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background-color: var(--accent);
+	color: white;
+	text-align: center;
+	padding: 10px;
+}
+footer i{
+	font-size: 20px;
+	color: var(--background);
 }
