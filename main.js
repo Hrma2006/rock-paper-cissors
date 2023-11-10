@@ -50,18 +50,26 @@ function getPlayerChoice() {
 	// Get all buttons with the ".p-option" class.
 	const buttons = document.querySelectorAll(".p-option");
 	// Add a click event listener to each button.
+
 	buttons.forEach((button) => {
 		button.addEventListener("click", function () {
 			// Determine which button was clicked by its id.
-			if (button.id === "p-fire") {
-				selectedButton = "Fire";
-			} else if (button.id === "p-water") {
-				selectedButton = "Water";
-			} else if (button.id === "p-grass") {
-				selectedButton = "Grass";
+			if (pPointsNum == 5 || rPointsNum == 5) {
+				playAgain.style.scale = "1";
+			} else {
+				if (button.id === "p-fire") {
+					selectedButton = "Fire";
+				} else if (button.id === "p-water") {
+					selectedButton = "Water";
+				} else if (button.id === "p-grass") {
+					selectedButton = "Grass";
+				}
+
+				if (pPointsNum != 5 && pPointsNum != 5) {
+					showPlayer(selectedButton);
+					playGame(selectedButton);
+				}
 			}
-			showPlayer(selectedButton);
-			playGame(selectedButton);
 		});
 	});
 }
@@ -151,31 +159,69 @@ function robotPointsPlus() {
 
 // a function to compare choices
 function compareChoices(player, robot) {
+	let won = "*You Won this Game*";
+	let lost = "*You lost this Game*";
 	//draw
 	if (player === robot) {
-		return `*you both chose ${player} it is a Draw*`;
+		return `*You both chose ${player} it is a Draw*`;
 	}
 	//wins
 	else if (/fire/i.test(player) && /grass/i.test(robot)) {
 		playerPointsPlus();
-		return `*${player} burns ${robot} you Won*`;
+		if (pPointsNum == 5) {
+			showPlayAgainButton();
+			playerWon();
+			return won;
+		} else {
+			return `*${player} burns ${robot} You Won*`;
+		}
 	} else if (/water/i.test(player) && /fire/i.test(robot)) {
 		playerPointsPlus();
-		return `*${player} puts down ${robot} you Won*`;
+		if (pPointsNum == 5) {
+			showPlayAgainButton();
+			playerWon();
+			return won;
+		} else {
+			return `*${player} puts down ${robot} You Won*`;
+		}
 	} else if (/grass/i.test(player) && /water/i.test(robot)) {
 		playerPointsPlus();
-		return `*${player} absorbs ${robot} you won*`;
+		if (pPointsNum == 5) {
+			showPlayAgainButton();
+			playerWon();
+			return won;
+		} else {
+			return `*${player} absorbs ${robot} you won*`;
+		}
 	}
 	//loses
 	else if (/grass/i.test(player) && /fire/i.test(robot)) {
 		robotPointsPlus();
-		return `*${robot} burns ${player} you Lost*`;
+		if (rPointsNum == 5) {
+			showPlayAgainButton();
+			robotWon();
+			return lost;
+		} else {
+			return `*${robot} burns ${player} you Lost*`;
+		}
 	} else if (/fire/i.test(player) && /water/i.test(robot)) {
 		robotPointsPlus();
-		return `*${robot} puts down ${player} you Lost*`;
+		if (rPointsNum == 5) {
+			showPlayAgainButton();
+			robotWon();
+			return lost;
+		} else {
+			return `*${robot} puts down ${player} you Lost*`;
+		}
 	} else if (/water/i.test(player) && /grass/i.test(robot)) {
 		robotPointsPlus();
-		return `*${robot} absorbs ${player} you Lost*`;
+		if (rPointsNum == 5) {
+			showPlayAgainButton();
+			robotWon();
+			return lost;
+		} else {
+			return `*${robot} absorbs ${player} you Lost*`;
+		}
 	}
 }
 function createHistory(player, robot) {
@@ -226,15 +272,31 @@ function makeCompare(player, robot) {
 	}
 	return operator;
 }
+
+function showPlayAgainButton() {
+	playAgain.style.scale = "1";
+}
 //reset the games won
 playAgain.addEventListener("click", () => {
 	pPointsNum = 0;
 	pPoints.innerHTML = pPointsNum;
-
 	rPointsNum = 0;
-	rPoints.innerHTML = rRoundNum;
-	removePlayed();
+	rPoints.innerHTML = rPointsNum;
+	playerFire.color = "";
+	playerFire.boxShadow = "";
+	playerGrass.color = "";
+	playerGrass.boxShadow = "";
+	playerWater.color = "";
+	playerWater.boxShadow = "";
+	robotFire.color = "";
+	robotFire.boxShadow = "";
+	robotGrass.color = "";
+	robotGrass.boxShadow = "";
+	robotWater.color = "";
+	robotWater.boxShadow = "";
 	playAgain.style.scale = "0";
+	note.innerHTML="*First to 5 rounds win*"
+	removePlayed();
 });
 function removePlayed() {
 	let playedContainer = document.querySelector(".played-container");
