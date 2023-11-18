@@ -92,19 +92,19 @@ i {
 	justify-content: center;
 	transition-duration: 0.4s;
 }
-.opt:hover {
+.p-option:hover {
 	cursor: pointer;
 	scale: 1.1;
 }
-.fire:hover {
+#p-fire:hover {
 	color: var(--fire);
 	box-shadow: 0 0 10px 5px var(--fire);
 }
-.water:hover {
+#p-water:hover {
 	color: var(--water);
 	box-shadow: 0 0 10px 5px var(--water);
 }
-.grass:hover {
+#p-grass:hover {
 	color: var(--grass);
 	box-shadow: 0 0 10px 5px var(--grass);
 }
