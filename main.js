@@ -29,6 +29,7 @@ let rPlayed = document.querySelector(".r-played");
 const robotFire = document.querySelector(".r-fire").style;
 const robotWater = document.querySelector(".r-water").style;
 const robotGrass = document.querySelector(".r-grass").style;
+const robotButtons=document.querySelectorAll(".r-option")
 //player buttons
 const playerFire = document.querySelector("#p-fire").style;
 const playerWater = document.querySelector("#p-water").style;
@@ -44,6 +45,14 @@ function getRobotChoice() {
 	showRobot(chosen);
 	return chosen;
 }
+// An event listener to give the player a warning if he selects from the robot
+robotButtons.forEach(button=>{
+	button.addEventListener('click',()=>{
+		note.innerHTML='*Please Select From Your Buttons*'
+	})
+})
+
+
 // A function to get the player choice
 function getPlayerChoice() {
 	let selectedButton;
